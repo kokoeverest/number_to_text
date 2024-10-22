@@ -83,16 +83,21 @@ class NumberToText:
         if int(self.numerical_value) < 0:
             self.is_negative_number = True
 
-        self.numerical_split_value = self._format_number_string(
-            str(self.numerical_value).lstrip("-")
-        ).strip(" ")
+        if self.is_negative_number:
+            self.numerical_split_value = "-" + self._format_number_string(
+                str(self.numerical_value).lstrip("-")
+            ).strip(" ")
+        else:
+            self.numerical_split_value = self._format_number_string(
+                str(self.numerical_value).lstrip("-")
+            ).strip(" ")
 
         words_as_numbers_list: list[str] = self._create_text_from_number(
-            self.numerical_split_value
+            self.numerical_split_value.lstrip("-")
         )
 
         return self._final_format(
-            words_as_numbers_list, self.numerical_split_value.split()
+            words_as_numbers_list, self.numerical_split_value.lstrip("-").split()
         )
 
     def _final_format(
@@ -157,9 +162,9 @@ class NumberToText:
         ]
 
         if len(temp_result) >= 2:
-            result = str.join(", ", (x.removesuffix(" ") for x in temp_result))
+            result = ", ".join((x.removesuffix(" ") for x in temp_result))
         else:
-            result = str.join(" ", temp_result).strip()
+            result = " ".join(temp_result).strip()
 
         result = result.replace(", and", " and")
 
@@ -195,7 +200,7 @@ class NumberToText:
             for digit in range(1, len(number_string) + 1)
         ]
 
-        return str.join("", result[::-1])
+        return "".join(result[::-1])
 
     def _create_text_from_number(self, number_text: str):
         """
@@ -238,7 +243,7 @@ class NumberToText:
 
         result.append(self._add_hundreds(numbers))
 
-        return str.join(" ", result)
+        return " ".join(result)
 
     def _all_digits_are_zeros(self, three_digit_string: str):
         """
@@ -279,7 +284,7 @@ class NumberToText:
         if result[0].endswith("hundred") and len(result) > 1 and result[1] != "":
             result[0] += " and"
 
-        return str.join(" ", result)
+        return " ".join(result)
 
     def _add_decimals(self, numbers: str):
         """
@@ -308,7 +313,7 @@ class NumberToText:
                     result.append(self._add_singles(numbers))
 
         finally:
-            return str.join(" ", result)
+            return " ".join(result)
 
     def _add_singles(self, numbers: str):
         """
