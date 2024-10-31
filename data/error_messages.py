@@ -1,3 +1,7 @@
+"""
+Common error messages included by the different Value errors, raised during validation of the number to be transformed into text.
+"""
+
 from data.constants import MAX_SUPPORTED_NUMBER_LENGTH
 
 FLOATING_POINT_ERROR_MESSAGE = "Floating point numbers are not supported"

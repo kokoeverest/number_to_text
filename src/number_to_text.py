@@ -20,7 +20,7 @@ class NumberToText:
     """
 
     @classmethod
-    def validate_number(cls, number: str | int):
+    def validate_number(cls, number: str | int) -> str:
         """
         Validates the given number to ensure it is a valid integer or string representation of an integer.
 
@@ -31,7 +31,7 @@ class NumberToText:
             ValueError: If the number is a floating point, too large, or contains non-digit characters.
 
         Returns:
-            str | int: The validated number.
+            str: The validated number.
         """
         if isinstance(number, float):
             raise ValueError(err.FLOATING_POINT_ERROR_MESSAGE)

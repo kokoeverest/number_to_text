@@ -1,3 +1,7 @@
+"""
+A helper file containing the string constants needed to create the textual representation of the number.
+"""
+
 MINUS = "minus"
 HUNDRED = "hundred"
 MAX_SUPPORTED_NUMBER = 999999999999999999999999999
@@ -52,4 +56,3 @@ LARGE = {
     8: " sextillion",
     9: " septillion",
 }
-

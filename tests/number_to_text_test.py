@@ -4,6 +4,10 @@ from data import constants
 
 
 class NumberToTextShould(unittest.TestCase):
+    def setUp(self):
+        self.maxDiff = None
+        return super().setUp()
+
     def test_validateNumber_raises_ValueError_withInvalidInputs(self):
         # Arrange
         invalid_numbers = [
