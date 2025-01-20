@@ -1,7 +1,9 @@
+from typing import Any
 import unittest
 from src.number_to_text import NumberToText
-from data import constants
+from src.data import constants
 
+_T = list[Any]
 
 class NumberToTextShould(unittest.TestCase):
     def setUp(self):
@@ -10,7 +12,7 @@ class NumberToTextShould(unittest.TestCase):
 
     def test_validateNumber_raises_ValueError_withInvalidInputs(self):
         # Arrange
-        invalid_numbers = [
+        invalid_numbers: _T = [
             3.14,
             "3.14",
             constants.MAX_SUPPORTED_NUMBER + 1,
@@ -24,7 +26,7 @@ class NumberToTextShould(unittest.TestCase):
 
     def test_numberToText_returns_correctResult_withValidStringOrInteger(self):
         # Arrange
-        test_input = ["100", 100]
+        test_input: _T = ["100", 100]
         expected_result = "one hundred"
 
         # Act & Assert
@@ -33,7 +35,7 @@ class NumberToTextShould(unittest.TestCase):
 
     def test_numberToText_returns_correctString_for_negativeNumbers(self):
         # Arrange
-        test_input = [-100, "-100"]
+        test_input: _T = [-100, "-100"]
         expected_result = "minus, one hundred"
 
         # Act & Assert
@@ -170,7 +172,7 @@ class NumberToTextShould(unittest.TestCase):
 
     def test_numberToText_returns_correctString_for_smallNumbers(self):
         # Arrange
-        test_input = [0, "0", -1, "-1", -0]
+        test_input: _T = [0, "0", -1, "-1", -0]
         expected_results = ["zero", "zero", "minus, one", "minus, one", "zero"]
 
         # Act & Assert

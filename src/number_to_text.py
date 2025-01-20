@@ -1,5 +1,4 @@
-import data.constants as dc
-import data.error_messages as err
+from .data import constants as dc, error_messages as err
 
 
 class NumberToText:
@@ -117,7 +116,7 @@ class NumberToText:
         Returns:
             str: The final formatted text.
         """
-        additions = set()
+        additions: set[str] = set()
 
         for index in range(len(words_as_numbers_list)):
             grade = len(words_as_numbers_list) - index
@@ -212,7 +211,7 @@ class NumberToText:
         Returns:
             list[str]: A list of words representing each digit group.
         """
-        result = []
+        result: list[str] = []
         temp_result = number_text.split(" ")
 
         for substring_idx in range(len(temp_result)):
@@ -236,7 +235,7 @@ class NumberToText:
         Returns:
             str: The textual representation of the digit group.
         """
-        result = []
+        result: list[str] = []
 
         if self._all_digits_are_zeros(numbers):
             return ""
@@ -296,7 +295,7 @@ class NumberToText:
         Returns:
             str: The textual representation of the tens and ones digits.
         """
-        result = []
+        result: list[str] = []
         try:
             result.append(dc.UNIQUES[int(numbers[-2:])])
 
